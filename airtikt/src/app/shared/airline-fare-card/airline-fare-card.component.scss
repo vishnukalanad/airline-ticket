@@ -1,0 +1,65 @@
+.airline-fare-card {
+    .airport-title {
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 0;
+        max-width: 200px;
+    }
+
+    .airline-card-flex-class {
+        display: flex;
+    }
+
+    .airline-flex {
+        flex-wrap: wrap;
+    }
+
+    .separator {
+        height: 2px;
+        width: 50px;
+        background-color: var(--primary);
+        margin: 0px 8px;
+        border-radius: 5px;
+    }
+
+    .divider {
+        width: 1px;
+        height: 2rem;
+        background-color: #ddd;
+    }
+
+    .mobile-flight-path {
+        display: none;
+    }
+
+    .depart-time,
+    .arrive-time {
+        .content {
+            display: flex;
+            align-items: center;
+        }
+
+
+        mat-icon {
+            color: var(--primary);
+            // margin: 0px 5px;
+        }
+
+        p:not(.secondary-title) {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+    }
+
+    .fare {
+        p:not(.secondary-title) {
+            font-size: 1.5rem;
+            color: var(--primary);
+
+            span {
+                font-size: .7rem;
+                vertical-align: super;
+            }
+        }
+    }
+}

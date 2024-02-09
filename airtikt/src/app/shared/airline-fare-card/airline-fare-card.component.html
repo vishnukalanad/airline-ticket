@@ -1,0 +1,93 @@
+<div class="custom-card px-2 py-3 airline-fare-card mt-3" *ngFor="let flight of flights">
+    <div class="airline-card-flex-class align-items-center justify-content-around gap-2 mt-2 airline-flex">
+        <div class="airport-info">
+            <p class="secondary-title">Departure</p>
+            <p class="airport-title">{{ flight.depart_airport.name }}</p>
+            <p class="title-3 d-flex align-items-center"><mat-icon>map</mat-icon> {{flight.depart_airport.location}}</p>
+        </div>
+        <div class="divider">
+
+        </div>
+        <div class="airport-info">
+            <p class="secondary-title">Arrival</p>
+            <p class="airport-title">{{ flight.arrival_airport.name }}</p>
+            <p class="title-3 d-flex align-items-center"><mat-icon>map</mat-icon> {{flight.arrival_airport.location}}
+            </p>
+        </div>
+        <div class="divider">
+
+        </div>
+        <div class="logo">
+            <p class="secondary-title">Airline</p>
+
+            <img class="mt-1" [src]="flight.airline.logo" width="100px" alt="">
+        </div>
+        <div class="divider">
+
+        </div>
+        <div class="depart-time">
+            <p class="secondary-title">Outbound</p>
+            <div class="content">
+                <mat-icon class="me-1">flight_takeoff</mat-icon>
+                <p class="m-0">{{flight.departure.time}}</p>
+            </div>
+            <p class="title-3 d-flex align-items-center"> <mat-icon>event</mat-icon> {{flight.departure.date | date :
+                'dd, MMM yyyy' }}
+            </p>
+
+        </div>
+        <div class="separator">
+
+        </div>
+        <div class="arrive-time">
+            <p class="secondary-title">Inbound</p>
+
+            <div class="content">
+                <mat-icon class="me-1">flight_land</mat-icon>
+                <p class="m-0">{{flight.arrival.time }}</p>
+            </div>
+
+            <p class="title-3 d-flex align-items-center"><mat-icon>event</mat-icon>
+                {{flight.arrival.date | date : 'dd, MMM yyyy'}}
+            </p>
+        </div>
+
+        <div class="mobile-flight-path">
+            <div class="depart-time">
+                <p class="secondary-title">Outbound</p>
+                <div class="content">
+                    <mat-icon class="me-1">flight_takeoff</mat-icon>
+                    <p class="m-0">{{flight.departure.time}}</p>
+                </div>
+                <p class="title-3 d-flex align-items-center"> <mat-icon>event</mat-icon> {{flight.departure.date | date
+                    :
+                    'dd, MMM yyyy' }}
+                </p>
+
+            </div>
+            <div class="separator">
+
+            </div>
+            <div class="arrive-time">
+                <p class="secondary-title">Inbound</p>
+
+                <div class="content">
+                    <mat-icon class="me-1">flight_land</mat-icon>
+                    <p class="m-0">{{flight.arrival.time }}</p>
+                </div>
+
+                <p class="title-3 d-flex align-items-center"><mat-icon>event</mat-icon>
+                    {{flight.arrival.date | date : 'dd, MMM yyyy'}}
+                </p>
+            </div>
+        </div>
+        <div class="divider">
+
+        </div>
+        <div class="fare">
+            <p class="secondary-title">Fare</p>
+            <p class="m-0">{{flight.amount.actual | currency : 'symbol' :'INR' :'0.00'}} <span>+ {{flight.amount.gst +
+                    '% '}}GST</span></p>
+        </div>
+    </div>
+</div>

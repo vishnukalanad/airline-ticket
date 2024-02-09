@@ -3,6 +3,29 @@
 @use '@angular/material'as mat;
 // Plus imports for other components in your app.
 
+$custom-palette: (50: #1d2637,
+  100: #bcf4d0,
+  200: #99E2B4,
+  300: #78C6A3,
+  400: #67B99A,
+  500: #469D89, // Primary Shade
+  600: #358F80,
+  700: #248277,
+  800: #14746F,
+  900: #036666,
+  contrast: (50: rgba(white, 0.87),
+    100: rgba(white, 0.87),
+    200: rgba(white, 0.87),
+    300: rgba(white, 1),
+    400: rgba(white, 1),
+    500: rgba(white, 1),
+    600: rgba(white, 1),
+    700: rgba(white, 1),
+    800: rgba(white, 1),
+    900: rgba(white, 1),
+  ));
+
+
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 // Be sure that you only ever include this mixin once!
@@ -11,7 +34,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
-$airtikt-primary: mat.define-palette(mat.$indigo-palette);
+$airtikt-primary: mat.define-palette($custom-palette);
+// $airtikt-primary: mat.define-palette(mat.$indigo-palette);
 $airtikt-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 
 // The warn palette is optional (defaults to red).
@@ -30,6 +54,21 @@ $airtikt-theme: mat.define-light-theme((color: (primary: $airtikt-primary,
 @include mat.all-component-themes($airtikt-theme);
 
 /* You can add global styles to this file, and also import other style files */
+// #99E2B4 #78C6A3 #67B99A #56AB91 #469D89 #358F80 #248277 #14746F #036666
+
+:root {
+  --primary: #248277;
+  --50: #bcf4d0;
+  --100: #99E2B4;
+  --200: #78C6A3;
+  --300: #67B99A;
+  --400: #56AB91;
+  --500: #469D89;
+  --600: #358F80;
+  --700: #248277;
+  --800: #14746F;
+  --dark: #036666;
+}
 
 html,
 body {
@@ -41,5 +80,173 @@ body {
 body,
 * {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Poppins, sans-serif;
+}
+
+
+
+.label-custom {
+  font-size: .85rem;
+  font-weight: 500;
+
+  span {
+    display: flex;
+    align-items: center;
+    padding: 5px
+  }
+}
+
+.custom-card {
+  width: 100%;
+  // background-color: #ffffffe5;
+  background-color: #fff;
+  box-shadow: 0px 6px 19px 4px #00000023;
+  border-radius: 15px;
+  backdrop-filter: blur(20px);
+  transition: .3s ease-in-out;
+
+  .title {
+    font-size: 1.4rem;
+  }
+}
+
+.secondary-title {
+  font-size: .8rem;
+  color: var(--500);
+  margin: 0;
+}
+
+.title-3 {
+  font-size: .8rem !important;
+  font-weight: 500;
+  color: var(--dark);
+  margin: 0;
+
+  mat-icon {
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+  }
+}
+
+
+@media (max-width: 768px) {
+
+  .airline-flex,
+  .search-actions {
+    flex-wrap: nowrap;
+  }
+
+
+  .airline-fare-card {
+
+    .logo,
+    .fare,
+    .airport-info {
+      padding: 0px 10px;
+      margin-bottom: 10px;
+    }
+
+    .airline-card-flex-class {
+      display: unset !important;
+    }
+
+    .airport-title {
+      font-size: 1rem;
+      font-weight: 500;
+      margin: 0;
+      max-width: 200px;
+    }
+
+
+    .separator {
+      height: 2px;
+      width: 50px;
+      background-color: var(--primary);
+      margin: 0px 8px;
+      border-radius: 5px;
+      display: none;
+    }
+
+    .divider {
+      width: 1px;
+      height: 2rem;
+      background-color: #ddd;
+      display: none;
+    }
+
+    .depart-time,
+    .arrive-time {
+      display: none;
+
+      .content {
+        display: flex;
+        align-items: center;
+      }
+
+
+      mat-icon {
+        color: var(--primary);
+        // margin: 0px 5px;
+      }
+
+      p:not(.secondary-title) {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+
+    .mobile-flight-path {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0px 10px;
+
+      .separator {
+        height: 2px;
+        width: 50px;
+        background-color: var(--primary);
+        margin: 0px 8px;
+        border-radius: 5px;
+        display: block;
+      }
+
+      .depart-time,
+      .arrive-time {
+        display: unset;
+
+        .content {
+          display: flex;
+          align-items: center;
+        }
+
+
+        mat-icon {
+          color: var(--primary);
+          // margin: 0px 5px;
+        }
+
+        p:not(.secondary-title) {
+          font-size: 1.5rem;
+          font-weight: 500;
+        }
+      }
+    }
+
+    .fare {
+      margin-bottom: 0;
+      margin-top: 15px;
+
+      p:not(.secondary-title) {
+        font-size: 1.5rem;
+        color: var(--primary);
+
+        span {
+          font-size: .7rem;
+          vertical-align: super;
+        }
+      }
+    }
+  }
+
 }

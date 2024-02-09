@@ -1,1 +1,103 @@
-<p>search-flight works!</p>
+<div class="custom-card p-4">
+    <p class="title">Search Flights.</p>
+    <form [formGroup]="flights">
+        <div class="row">
+            <div class="col-md-12 mb-2">
+                <mat-radio-group aria-label="Select an option" formControlName="type">
+                    <mat-radio-button color="primary" value="round">Round trip</mat-radio-button>
+                    <mat-radio-button class="ms-1" color="primary" value="one">One way</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field class="w-100" appearance="outline" [autofocus]="true">
+                    <mat-label>Departing from</mat-label>
+                    <input type="text" placeholder="Airport" aria-label="departing from" matInput formControlName="from"
+                        [matAutocomplete]="from">
+                    <mat-autocomplete autoActiveFirstOption #from="matAutocomplete" (opened)="clearFiltered(['from'])">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-icon matPrefix color="primary">flight_takeoff</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field class="w-100" appearance="outline" [autofocus]="true">
+                    <mat-label>Arriving to</mat-label>
+                    <input type="text" placeholder="Airport" aria-label="arrival" matInput formControlName="to"
+                        [matAutocomplete]="to">
+                    <mat-autocomplete #to="matAutocomplete" (opened)="clearFiltered(['to'])">
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                            {{option}}
+                        </mat-option>
+                    </mat-autocomplete>
+                    <mat-icon matPrefix color="primary">flight_land</mat-icon>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Departure date</mat-label>
+                    <input matInput [matDatepicker]="depart" name="depart" formControlName="depart">
+                    <mat-datepicker-toggle matIconPrefix [for]="depart"></mat-datepicker-toggle>
+                    <mat-datepicker #depart></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="col-md-3 mt-2" *ngIf="flights.value.type === 'round'">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Return date</mat-label>
+                    <input matInput [matDatepicker]="return" name="return" formControlName="return">
+                    <mat-datepicker-toggle matIconPrefix [for]="return"></mat-datepicker-toggle>
+                    <mat-datepicker #return></mat-datepicker>
+                </mat-form-field>
+
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Adults</mat-label>
+                    <mat-select formControlName="adults">
+                        <mat-option *ngFor="let i of count" [value]="i">{{ i }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Children</mat-label>
+                    <mat-select formControlName="children">
+                        <mat-option *ngFor="let i of count" [value]="i">{{ i }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Infants</mat-label>
+                    <mat-select formControlName="infants">
+                        <mat-option *ngFor="let i of count" [value]="i">{{ i }}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="col-md-3 mt-2">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Promo Code</mat-label>
+                    <input matInput placeholder="" value="" name="promo" formControlName="promo">
+                </mat-form-field>
+            </div>
+            <div class="col-md-12">
+                <div class="d-flex justify-content-between align-items-center search-actions">
+                    <div>
+                        <mat-chip-listbox aria-label="Special fares" #special>
+                            <label class="d-flex align-items-center label-custom" for="special">
+                                <span><mat-icon class="label-icon" color="primary">military_tech</mat-icon></span>
+                                Special fares
+                                (Optional)</label>
+                            <mat-chip-option>Student</mat-chip-option>
+                            <mat-chip-option>Senior Citizen</mat-chip-option>
+                            <mat-chip-option>IAF</mat-chip-option>
+                        </mat-chip-listbox>
+                    </div>
+                    <button mat-flat-button color="primary">Search Flights</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
